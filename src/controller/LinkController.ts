@@ -11,4 +11,19 @@ export default class LinkController {
         }
     }
 
+    async removeLink(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.send('Remove Link');
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async getLinks(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.send('Get Links');
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }
