@@ -1,9 +1,9 @@
 import {Request, Response, NextFunction} from 'express';
 import {ILinkService} from "../service/link/ILinkService";
 import ServiceProvider from "../helper/provider/ServiceProvider";
-import Link from "../model/Link";
-import getRedirectPage from "../helper/RedirectPage";
+import getRedirectPage from "../helper/html/RedirectPage";
 import {IRequestDataService} from "../service/requestData/IRequestDataService";
+import indexPage from "../helper/html/IndexPage";
 
 export default class IndexController {
     private linkService: ILinkService;
@@ -16,21 +16,27 @@ export default class IndexController {
 
     async indexPage(req: Request, res: Response, next: NextFunction) {
         try {
-            res.send('Home Page!');
-        } catch (e) {
+            let s = indexPage();
+            res.send(s);
+        } catch (e: any) {
             console.log(e);
-            res.send(e);
+            res.status(400);
+            res.send(e.toString());
         }
     }
 
     async reroute(req: Request, res: Response, next: NextFunction) {
         try {
+            if (req.params.linko == "favicon.ico") {
+                return;
+            }
             let link = await this.linkService.redirect(req.params.linko);
             res.send(getRedirectPage(link));
             this.requestDataService.saveData(req);
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
-            res.send('Error: ' + e);
+            res.status(400);
+            res.send(e.toString());
         }
     }
 }

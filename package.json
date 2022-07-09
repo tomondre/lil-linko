@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/Main.js",
+    "start": "copyfiles -u 1 assets/*.html build/assets && tsc && node ./build/Main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,11 +13,14 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^18.0.3",
+    "babel-core": "^6.26.3",
     "typecript": "^0.0.1-security"
   },
   "dependencies": {
     "@prisma/client": "^4.0.0",
+    "copyfiles": "^2.4.1",
     "express": "^4.18.1",
+    "geoip-lite": "^1.4.5",
     "prisma": "^4.0.0"
   }
 }

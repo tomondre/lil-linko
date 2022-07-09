@@ -1,4 +1,4 @@
-import Link from "../model/Link";
+import Link from "../../model/Link";
 
 export default function getRedirectPage(link: Link): string {
     return '<!DOCTYPE html>' +
