@@ -10,8 +10,8 @@ class IndexRoutes {
     }
 
     initializeRoutes() {
-        this.router.route('/').get(this.indexController.indexPage);
-        this.router.route('/:linko').get(this.indexController.reroute);
+        this.router.route('/').get(((req, res, next) => this.indexController.indexPage(req, res, next)));
+        this.router.route('/:linko').get(((req, res, next) => this.indexController.reroute(req, res, next)));
     }
 }
 

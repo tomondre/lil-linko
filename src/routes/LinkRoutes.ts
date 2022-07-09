@@ -11,9 +11,9 @@ class LinkRoutes {
     }
 
     initializeRoutes() {
-        this.router.route('/').get(this.linkController.getLinks);
-        this.router.route('/').post(this.linkController.createLink);
-        this.router.route('/:id').delete(this.linkController.removeLink);
+        this.router.route('/').get(((req, res, next) => this.linkController.getLinks(req, res, next)));
+        this.router.route('/').post(((req, res, next) => this.linkController.createLink(req, res, next)));
+        this.router.route('/:id').delete(((req, res, next) => this.linkController.removeLink(req, res, next)));
     }
 }
 
