@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Redirect me</title>
+  <script>
+    let userAgent = navigator.userAgent;
+    let browserName;
+
+    if(userAgent.match(/chrome|chromium|crios/i)){
+      browserName = "chrome";
+    }else if(userAgent.match(/firefox|fxios/i)){
+      browserName = "firefox";
+    }  else if(userAgent.match(/safari/i)){
+      browserName = "safari";
+    }else if(userAgent.match(/opr\//i)){
+      browserName = "opera";
+    } else if(userAgent.match(/edg/i)){
+      browserName = "edge";
+    }else{
+      browserName="No browser detection";
+    }
+
+    var i = {
+      timeOpened:new Date(),
+      timezone:(new Date()).getTimezoneOffset()/60,
+      previousSitesCount: history.length,
+      browserName: browserName,
+      language: navigator.language,
+      platform: navigator.platform,
+      screenWidth: screen.width,
+      screenHeight: screen.height,
+      colorDepth: screen.colorDepth,
+    }
+    console.log(i);
+    let request = new XMLHttpRequest();
+    request.open('POST', '{{HOST_URL}}/data');
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send(JSON.stringify(i));
+  </script>
+  <meta http-equiv = "refresh" content = "0;URL={{LINKO_URL}}  "/>
+  </head> 
+<body> 
+</body> 
+</html>

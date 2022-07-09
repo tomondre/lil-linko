@@ -1,13 +1,12 @@
 import Link from "../../model/Link";
+import fs from "fs";
+
+let redirectPage: string;
+fs.readFile("./assets/redirect.html", (err, data) => {
+    redirectPage = data.toString();
+    redirectPage = redirectPage.replace("{{HOST_URL}}", process.env.HOST_URL ?? "http://link.tomondre.com/");
+});
 
 export default function getRedirectPage(link: Link): string {
-    return '<!DOCTYPE html>' +
-        '<html>' +
-        '<head>' +
-        '<title>Redirect me</title>' +
-        '<meta http-equiv = "refresh" content = "0;URL=' + link.url + '"/>' +
-        '</head>' +
-        '<body>' +
-        '</body>' +
-        '</html>'
+    return redirectPage.replace("{{LINKO_URL}}", link.url);
 }

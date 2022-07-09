@@ -3,6 +3,7 @@ import {Request} from "express";
 import {IRequestDataRepository} from "../../repository/requestData/IRequestDataRepository";
 import RepositoryProvider from "../../helper/provider/RepositoryProvider";
 import requestDataParser from "../../helper/RequestDataParser";
+import RequestData from "../../model/RequestData";
 
 export default class RequestDataService implements IRequestDataService{
     private requestDataRepository: IRequestDataRepository;

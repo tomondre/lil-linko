@@ -32,7 +32,6 @@ export default class IndexController {
             }
             let link = await this.linkService.redirect(req.params.linko);
             res.send(getRedirectPage(link));
-            this.requestDataService.saveData(req);
         } catch (e: any) {
             console.log(e);
             res.status(400);
