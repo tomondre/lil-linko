@@ -1,8 +1,28 @@
 import {Request} from "express";
-import RequestData from "../model/RequestData";
+import CallerData from "../model/CallerData";
+import abstractApiCall from "./AbstractApiCall";
+import ConnectionData from "../model/ConnectionData";
+import Currency from "../model/Currency";
+import Timezone from "../model/Timezone";
+import Address from "../model/Address";
 
-export default function(req: Request) {
-    let requestData: RequestData = JSON.parse(req.body);
-    requestData.ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'][0] : req.socket.remoteAddress ?? "";
-    return requestData;
+export default async function (req: Request): Promise<CallerData> {
+    let d: CallerData = req.body;
+    //TODO Uncomment
+    // let ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'][0] : req.socket.remoteAddress ?? "";
+    let ip = "86.52.4.101";
+    d.ip = ip;
+
+    try {
+        let r = await abstractApiCall(ip);
+        d.longitude = r.longitude;
+        d.latitude = r.latitude;
+        d.connectionData = new ConnectionData(r.connection.autonomous_system_number, r.connection.autonomous_system_organization, r.connection.connection_type, r.connection.isp_name, r.connection.organization_name);
+        d.currency = new Currency(r.currency.currency_code, r.currency.currency_name);
+        d.timeZone = new Timezone(r.timezone.name, r.timezone.abbreviation, r.timezone.gmt_offset, r.timezone.is_dst)
+        d.address = new Address(r.continent, r.continent_code, r.country, r.continent_code, r.region, r.postal_code, r.city);
+    } catch (e) {
+        console.log(e);
+    }
+    return d;
 }

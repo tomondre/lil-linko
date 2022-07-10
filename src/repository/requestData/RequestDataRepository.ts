@@ -1,5 +1,5 @@
 import {IRequestDataRepository} from "./IRequestDataRepository";
-import RequestData from "../../model/RequestData";
+import CallerData from "../../model/CallerData";
 import PrismaClientProvider from "../../helper/provider/PrismaClientProvider";
 import {PrismaClient} from "@prisma/client";
 
@@ -10,7 +10,7 @@ export default class RequestDataRepository implements IRequestDataRepository {
         this.prismaClient = PrismaClientProvider.getClient();
     }
 
-    create(data: RequestData): void {
+    create(data: CallerData): void {
         console.log(data);
         //TODO: implement
     }

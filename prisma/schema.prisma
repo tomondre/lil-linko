@@ -6,9 +6,71 @@ generator client {
 }
 
 model Link {
-  id String @id @default(uuid())
+  id String @id
   url String
   createdAt DateTime @default(now())
+  isValid Boolean @default(true)
+}
+
+model CallerData {
+    id Int @id @default(autoincrement())
+    ip String
+    date DateTime
+    previousSiteCount Int
+    browserName String
+    language String
+    platform String
+    screenWidth Int
+    screenHeight Int
+    colorDepth Int
+    longtitude Int
+    latitude Int
+    timeZone TimeZone @relation(fields: [timeZoneId], references: [id])
+    timeZoneId Int
+    address Address @relation(fields: [addressId], references: [id])
+    addressId Int
+    currency Currency @relation(fields: [currencyId], references: [id])
+    currencyId Int
+    connectionData ConnectionData @relation(fields: [connectionDataId], references: [id])
+    connectionDataId Int
+}
+
+model TimeZone {
+    id Int @id @default(autoincrement())
+    name String
+    abbreviation String
+    gmtOffset Int
+    isDst Boolean
+    callerData CallerData[]
+}
+
+model Currency {
+    id Int @id @default(autoincrement())
+    code String
+    name String
+    callerData CallerData[]
+}
+
+model ConnectionData {
+    id Int @id @default(autoincrement())
+    asn Int
+    aso String
+    connectionType String
+    ispName String
+    organizationName String
+    callerData CallerData[]
+}
+
+model Address {
+    id Int @id @default(autoincrement())
+    continent String
+    continenctCode String
+    country String
+    countryCode String
+    region String
+    postalCode String
+    city String
+    callerData CallerData[]
 }
 
 datasource db {

@@ -1,5 +1,5 @@
-import RequestData from "../../model/RequestData";
+import CallerData from "../../model/CallerData";
 
 export interface IRequestDataRepository {
-    create(data: RequestData): void;
+    create(data: CallerData): void;
 }

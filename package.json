@@ -13,6 +13,8 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^18.0.3",
+    "@types/node-fetch": "^2.6.2",
+    "@types/shortid": "^0.0.29",
     "babel-core": "^6.26.3",
     "typecript": "^0.0.1-security"
   },
@@ -21,6 +23,8 @@
     "copyfiles": "^2.4.1",
     "express": "^4.18.1",
     "geoip-lite": "^1.4.5",
-    "prisma": "^4.0.0"
+    "node-fetch": "^2.6.7",
+    "prisma": "^4.0.0",
+    "shortid": "^2.2.16"
   }
 }

@@ -3,7 +3,7 @@ import {Request} from "express";
 import {IRequestDataRepository} from "../../repository/requestData/IRequestDataRepository";
 import RepositoryProvider from "../../helper/provider/RepositoryProvider";
 import requestDataParser from "../../helper/RequestDataParser";
-import RequestData from "../../model/RequestData";
+import CallerData from "../../model/CallerData";
 
 export default class RequestDataService implements IRequestDataService{
     private requestDataRepository: IRequestDataRepository;
@@ -12,8 +12,8 @@ export default class RequestDataService implements IRequestDataService{
         this.requestDataRepository = RepositoryProvider.getRequestDataRepository();
     }
 
-    saveData(req: Request): void {
-        let requestData = requestDataParser(req);
+    async saveData(req: Request): Promise<void> {
+        let requestData = await requestDataParser(req);
         this.requestDataRepository.create(requestData);
     }
 }

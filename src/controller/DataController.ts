@@ -1,4 +1,4 @@
-import RequestData from "../model/RequestData";
+import CallerData from "../model/CallerData";
 import ServiceProvider from "../helper/provider/ServiceProvider";
 import RequestDataService from "../service/requestData/RequestDataService";
 import {IRequestDataService} from "../service/requestData/IRequestDataService";
@@ -11,11 +11,11 @@ export default class DataController {
         this.requestDataService = ServiceProvider.getRequestDataService();
     }
 
-    createRequestData(req: Request, res: Response, next: NextFunction) {
+    async createRequestData(req: Request, res: Response, next: NextFunction) {
         try {
             //TODO Remove
             console.log(req.body);
-            this.requestDataService.saveData(req);
+            await this.requestDataService.saveData(req);
             res.send('OK');
         } catch (e: any) {
             console.log(e);

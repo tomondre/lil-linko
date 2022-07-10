@@ -36,8 +36,7 @@
             }).done(function(msg) {
                 $('span').text('Shortened url: \n {{HOST_URL}}/' + msg.id);
             }).fail(function(err, textstatus, error) {
-                console.log(err);
-                $('span').text(textstatus);
+                $('span').text(err.responseText);
             });
         });
     });
