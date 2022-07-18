@@ -13,7 +13,8 @@ export default class LinkRepository implements ILinkRepository {
     }
 
     async createLink(url: string): Promise<Link> {
-        let shortId: string = shortid();
+        shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@');
+        let shortId: string = shortid.generate();
         return this.prismaClient.link.create({
             data: {
                 id: shortId,
@@ -32,6 +33,23 @@ export default class LinkRepository implements ILinkRepository {
     }
 
     getLinks(): Promise<Link[]> {
-        return this.prismaClient.link.findMany();
+        return this.prismaClient.link.findMany({
+            where: {
+                isValid: true
+            }
+        });
+    }
+
+    async removeLink(id: string): Promise<Link> {
+        let link = await this.prismaClient.link.update({
+            where: {
+                id
+            },
+            data: {
+                isValid: false
+            }
+        });
+
+        return link;
     }
 }

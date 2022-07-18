@@ -21,8 +21,8 @@ export default async function (req: Request): Promise<CallerData> {
         d.currency = new Currency(r.currency.currency_code, r.currency.currency_name);
         d.timeZone = new Timezone(r.timezone.name, r.timezone.abbreviation, r.timezone.gmt_offset, r.timezone.is_dst)
         d.address = new Address(r.continent, r.continent_code, r.country, r.continent_code, r.region, r.postal_code, r.city);
-    } catch (e) {
-        console.log(e);
+    } catch (e: any) {
+        console.log(e.toString());
     }
     return d;
 }

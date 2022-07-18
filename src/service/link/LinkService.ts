@@ -23,4 +23,8 @@ export default class LinkService implements ILinkService {
     getLinks(): Promise<Link[]> {
         return this.linkRepository.getLinks();
     }
+
+    removeLink(id: string): Promise<Link> {
+        return this.linkRepository.removeLink(id);
+    }
 }

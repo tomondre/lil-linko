@@ -26,8 +26,8 @@ export default class LinkController {
 
     async removeLink(req: Request, res: Response, next: NextFunction) {
         try {
-            //TODO
-            res.send('Remove Link');
+            let link = await this.linkService.removeLink(req.route.id);
+            res.json(link);
         } catch (e: any) {
             console.log(e);
             res.status(400);

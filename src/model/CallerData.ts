@@ -22,7 +22,7 @@ export default class CallerData {
 
     private _ip: string;
     private _date: Date;
-    private _previousSiteCount: number;
+    private _previousSitesCount: number;
     private _browserName: string;
     private _language: string;
     private _platform: string;
@@ -37,10 +37,10 @@ export default class CallerData {
     private _connectionData: ConnectionData;
 
 
-    constructor(ip: string, date: Date, previousSiteCount: number, browserName: string, language: string, platform: string, screenWidth: number, screenHeight: number, colorDepth: number, address: Address, longitude: number, latitude: number, timeZone: Timezone, currency: Currency, connectionData: ConnectionData) {
+    constructor(ip: string, date: Date, previousSitesCount: number, browserName: string, language: string, platform: string, screenWidth: number, screenHeight: number, colorDepth: number, address: Address, longitude: number, latitude: number, timeZone: Timezone, currency: Currency, connectionData: ConnectionData) {
         this._ip = ip;
         this._date = date;
-        this._previousSiteCount = previousSiteCount;
+        this._previousSitesCount = previousSitesCount;
         this._browserName = browserName;
         this._language = language;
         this._platform = platform;
@@ -71,12 +71,12 @@ export default class CallerData {
         this._date = value;
     }
 
-    get previousSiteCount(): number {
-        return this._previousSiteCount;
+    get previousSitesCount(): number {
+        return this._previousSitesCount;
     }
 
-    set previousSiteCount(value: number) {
-        this._previousSiteCount = value;
+    set previousSitesCount(value: number) {
+        this._previousSitesCount = value;
     }
 
     get browserName(): string {

@@ -8,6 +8,7 @@
     <input type="text" id="url" name="url" placeholder="https://google.com"><br>
     <input type="submit">
 </form>
+<a href=""></a>
 <span></span>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
@@ -34,7 +35,10 @@
                 contentType: "application/json",
                 data: JSON.stringify(link)
             }).done(function(msg) {
-                $('span').text('Shortened url: \n {{HOST_URL}}/' + msg.id);
+                let url = `{{HOST_URL}}/${msg.id}`;
+                let a = $('a');
+                a.attr("href", url);
+                a.text(url);
             }).fail(function(err, textstatus, error) {
                 $('span').text(err.responseText);
             });

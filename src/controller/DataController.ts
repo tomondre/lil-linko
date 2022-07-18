@@ -13,8 +13,6 @@ export default class DataController {
 
     async createRequestData(req: Request, res: Response, next: NextFunction) {
         try {
-            //TODO Remove
-            console.log(req.body);
             await this.requestDataService.saveData(req);
             res.send('OK');
         } catch (e: any) {

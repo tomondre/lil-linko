@@ -7,7 +7,7 @@ export default class PrismaClientProvider {
 
     static getClient(): PrismaClient {
         if (this.client == undefined) {
-            this.client = new PrismaClient();
+            this.client = new PrismaClient({log: ['query', 'info', 'warn', 'error'],});
         }
         return this.client;
     }

@@ -16,15 +16,15 @@ model CallerData {
     id Int @id @default(autoincrement())
     ip String
     date DateTime
-    previousSiteCount Int
+    previousSitesCount Int
     browserName String
     language String
     platform String
     screenWidth Int
     screenHeight Int
     colorDepth Int
-    longtitude Int
-    latitude Int
+    longitude Float
+    latitude Float
     timeZone TimeZone @relation(fields: [timeZoneId], references: [id])
     timeZoneId Int
     address Address @relation(fields: [addressId], references: [id])
@@ -42,11 +42,12 @@ model TimeZone {
     gmtOffset Int
     isDst Boolean
     callerData CallerData[]
+    @@unique ([abbreviation, isDst])
 }
 
 model Currency {
     id Int @id @default(autoincrement())
-    code String
+    code String @unique
     name String
     callerData CallerData[]
 }
@@ -59,18 +60,20 @@ model ConnectionData {
     ispName String
     organizationName String
     callerData CallerData[]
+    @@unique([asn, aso, connectionType, ispName, organizationName])
 }
 
 model Address {
     id Int @id @default(autoincrement())
     continent String
-    continenctCode String
+    continentCode String
     country String
     countryCode String
     region String
     postalCode String
     city String
     callerData CallerData[]
+    @@unique([country, city])
 }
 
 datasource db {
