@@ -2,7 +2,7 @@ import {Router} from "express";
 import IndexController from "../controller/IndexController";
 import LinkController from "../controller/LinkController";
 
-class LinkRoutes {
+class LinkRouter {
     router: Router = Router();
     linkController: LinkController = new LinkController();
 
@@ -17,4 +17,4 @@ class LinkRoutes {
     }
 }
 
-export default new LinkRoutes().router;
+export default new LinkRouter().router;

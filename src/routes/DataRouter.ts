@@ -1,7 +1,7 @@
 import {Router} from "express";
 import DataController from "../controller/DataController";
 
-class DataRoutes {
+class DataRouter {
     router: Router = Router();
     dataController: DataController = new DataController();
 
@@ -13,4 +13,4 @@ class DataRoutes {
         this.router.route('/').post(((req, res, next) => this.dataController.createRequestData(req, res, next)));
     }
 }
-export default new DataRoutes().router
+export default new DataRouter().router

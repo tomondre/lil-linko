@@ -1,7 +1,7 @@
 import {Router} from "express";
 import IndexController from "../controller/IndexController";
 
-class IndexRoutes {
+class IndexRouter {
     router: Router = Router();
     indexController: IndexController = new IndexController();
 
@@ -15,4 +15,4 @@ class IndexRoutes {
     }
 }
 
-export default new IndexRoutes().router;
+export default new IndexRouter().router;
