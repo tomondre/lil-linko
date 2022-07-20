@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "copyfiles -u 1 assets/*.html build/assets && tsc && node ./build/Main.js",
+    "build": "tsc",
+    "start": "copyfiles -u 1 src/assets/*.html build/ && tsc && node ./build/Main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -25,6 +26,7 @@
     "geoip-lite": "^1.4.5",
     "node-fetch": "^2.6.7",
     "prisma": "^4.0.0",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "typecript": "^0.0.1-security"
   }
 }
