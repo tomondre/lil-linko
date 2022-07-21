@@ -8,12 +8,11 @@ import Address from "../model/Address";
 
 export default async function (req: Request): Promise<CallerData> {
     let d: CallerData = req.body;
-    let ip = req.clientIp;
+    let ip = req.header("cf-connecting-ip");
     if (ip === undefined) {
         console.log('No IP found');
         return d;
     }
-
     d.ip = ip;
 
     try {

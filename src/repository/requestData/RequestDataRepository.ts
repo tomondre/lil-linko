@@ -12,7 +12,7 @@ export default class RequestDataRepository implements IRequestDataRepository {
 
     async create(data: CallerData): Promise<void> {
         let promises: any = []
-
+        console.log(data);
         promises.push(this.prismaClient.address.upsert({
             where: {
                 country_city: {
