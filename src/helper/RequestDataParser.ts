@@ -8,9 +8,12 @@ import Address from "../model/Address";
 
 export default async function (req: Request): Promise<CallerData> {
     let d: CallerData = req.body;
-    //TODO Uncomment
-    // let ip = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'][0] : req.socket.remoteAddress ?? "";
-    let ip = "86.52.4.101";
+    let ip = req.clientIp;
+    if (ip === undefined) {
+        console.log('No IP found');
+        return d;
+    }
+
     d.ip = ip;
 
     try {
