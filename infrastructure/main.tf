@@ -9,7 +9,7 @@ terraform {
 }
 
 module "lil_linko_deployment" {
-  source            = "../reusable-modules/full-deployment"
+  source            = "git::https://github.com/tomondre/raspberry-kubernetes-cluster.git//terraform-modules/reusable-modules/full-deployment"
   health_check_path = "/healthcheck"
   image_tag         = var.image_tag
   image_url         = "docker.io/tomondre/lil-linko"
