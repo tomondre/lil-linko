@@ -20,17 +20,3 @@ COPY --from=0 /app/prisma ./prisma
 RUN npx prisma generate
 EXPOSE 8080
 CMD ["node","/app/src/Server.js"]
-
-#ENV NODE_ENV=production
-#
-#WORKDIR /app
-#
-#COPY ["package.json", "package-lock.json*", "./"]
-#
-#RUN npm install
-#
-#COPY . .
-#
-#EXPOSE 8080
-#
-#CMD [ "node", "./build/Server.js" ]

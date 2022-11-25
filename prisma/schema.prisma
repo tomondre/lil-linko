@@ -7,7 +7,7 @@ generator client {
 
 model Link {
   id String @id
-  url String @db.VarChar(250)
+  url String @db.VarChar(1000)
   createdAt DateTime @default(now())
   isValid Boolean @default(true)
 }
